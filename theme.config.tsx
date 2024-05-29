@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
     display:'flex',
     alignItems:'center',
     gap:'4px'
-  }}><img src={'/logo.png'} width='40px'  />Fla Documentation</div>,
+  }}><img src={'/logo.png'} width='30px'  />Flamma network</div>,
   project: {
     link: 'https://github.com/shuding/nextra-docs-template',
   },
@@ -15,7 +15,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
   footer: {
-    text: 'Nextra Docs Template',
+    text: '© 2024 Flamma network',
   },
 }
 
