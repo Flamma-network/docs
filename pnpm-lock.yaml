@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      cobe:
+        specifier: ^0.6.3
+        version: 0.6.3
       next:
         specifier: ^13.0.6
         version: 13.0.6(@babel/core@7.24.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -1144,6 +1147,9 @@ packages:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
 
+  cobe@0.6.3:
+    resolution: {integrity: sha512-WHr7X4o1ym94GZ96h7b1pNemZJacbOzd02dZtnVwuC4oWBaLg96PBmp2rIS1SAhUDhhC/QyS9WEqkpZIs/ZBTg==}
+
   color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
 
@@ -2052,6 +2058,9 @@ packages:
 
   periscopic@3.0.4:
     resolution: {integrity: sha512-SFx68DxCv0Iyo6APZuw/AKewkkThGwssmU0QWtTlvov3VAtPX+QJ4CadwSaz8nrT5jPIuxdvJWB4PnD2KNDxQg==}
+
+  phenomenon@1.6.0:
+    resolution: {integrity: sha512-7h9/fjPD3qNlgggzm88cY58l9sudZ6Ey+UmZsizfhtawO6E3srZQXywaNm2lBwT72TbpHYRPy7ytIHeBUD/G0A==}
 
   picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
@@ -3648,6 +3657,10 @@ snapshots:
 
   clsx@2.1.1: {}
 
+  cobe@0.6.3:
+    dependencies:
+      phenomenon: 1.6.0
+
   color-convert@1.9.3:
     dependencies:
       color-name: 1.1.3
@@ -4959,6 +4972,8 @@ snapshots:
     dependencies:
       estree-walker: 3.0.1
       is-reference: 3.0.0
+
+  phenomenon@1.6.0: {}
 
   picocolors@1.0.0: {}
 

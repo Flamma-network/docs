@@ -1,15 +1,16 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
+  "index": "Flamma Network",
+  "sureairdrop": "SureAirdrop",
   "advanced": "Advanced (A Folder)",
+ 
+  "contact": {
+    "title": "Home ↗",
+    "type": "page",
+    "href": "https://flamma.network",
+    "newWindow": true
+  },
   "about": {
     "title": "About",
     "type": "page"
-  },
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "https://twitter.com/shuding_",
-    "newWindow": true
   }
 }

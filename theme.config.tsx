@@ -17,6 +17,9 @@ const config: DocsThemeConfig = {
   footer: {
     text: '© 2024 Flamma network',
   },
+  toc: {
+    title: 'Table of contents'
+  },
 }
 
 export default config

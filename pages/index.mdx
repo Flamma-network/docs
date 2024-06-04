@@ -1,10 +1,59 @@
-# Introduction
+import { Callout } from 'nextra/components'
+
+![flamma](/banner.png)
+
+<span style={{ display: "flex", flexDirection: "row" }}>
+{[
+  [
+    "MIT License",
+    "https://img.shields.io/badge/license-MIT-blue.svg",
+    "https://github.com/samchon/typia/blob/master/LICENSE",
+  ],
+  [
+    "NPM Version",
+    "https://img.shields.io/npm/v/typia.svg",
+    "https://www.npmjs.com/package/typia",
+  ],
+  [
+    "NPM Downloads",
+    "https://img.shields.io/npm/dm/typia.svg",
+    "https://www.npmjs.com/package/typia",
+  ],
+  [
+    "Build Status",
+    "https://github.com/samchon/typia/workflows/build/badge.svg",
+    "https://github.com/samchon/typia/actions?query=workflow%3Abuild",
+  ],
+  [
+    "Guide Documents",
+    "https://img.shields.io/badge/guide-documents-forestgreen",
+    "https://typia.io/docs/",
+  ]
+].map(([alt, image, url]) => (
+  <a href={url} style={{ marginTop: "30px", marginRight: "6px" }}>
+      <img src={image} alt={alt} />
+  </a>
+))}
+</span>
  
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
+<Callout type="info" emoji="🍔">
+  The Flamma Network is a blockchain for the people, with no involvement from VCs, capital firms, or whales. It operates in a fully transparent manner, rewarding $FLA tokens to participants, builders, governors, and maintainers. The network is managed and operated using a DAO model.
+</Callout>
 
-## What is Nextra?
+# Overview
+ 
+Flamma is a sequence-based blockchain designed for large-scale commercial applications. It features a high-performance network suitable for various use cases, including finance, payments, and gaming. The Flamma Network is open, interoperable, and decentralized, allowing anyone to quickly build super applications on its platform.
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+## Get Started
+
+| Launch a Solidity Dapp on Flamma   |  |
+| :----- | :---- |
+| [Get $FLA Test Funds]()     |  Get test tokens to use on the Flamma network for development and testing purposes.   |
+| [Deploy with Remix IDE]() | Utilize the Remix Integrated Development Environment to write, compile, and deploy smart contracts effortlessly.  |
+| [Create an ERC-20 Token]() | Design and deploy your own [ERC-20](https://eips.ethereum.org/EIPS/eip-20) token, the standard for FT.  |
+| [Deploy an NFT Collection]() | Launch a collection of [ERC-721](https://eips.ethereum.org/EIPS/eip-721) Non-Fungible Tokens (NFTs) to represent unique digital assets.  |
+| [Integrate a Wallet in Your Front-End Application]() | Integrating a cryptocurrency wallet into your front-end application allows users to interact directly with the Flamma network from your website.  |
+| [ERC20 Token Claim Front-End Template]() | This front-end template allows users to claim their ERC20 tokens seamlessly. Built with modern web technologies, the template provides an intuitive and secure interface for interacting with smart contracts.  |
 
 ## Documentation
 
