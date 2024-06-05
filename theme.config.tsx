@@ -8,12 +8,12 @@ const config: DocsThemeConfig = {
     gap:'4px'
   }}><img src={'/icon.svg'} width='30px'  />Flamma network</div>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: 'https://github.com/Flamma-network/docs',
   },
   chat: {
     link: 'https://discord.com',
   },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  docsRepositoryBase: 'https://github.com/Flamma-network/docs',
   footer: {
     text: '© 2024 Flamma network',
   },
