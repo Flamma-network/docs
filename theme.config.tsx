@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
     display:'flex',
     alignItems:'center',
     gap:'4px'
-  }}><img src={'/logo.png'} width='30px'  />Flamma network</div>,
+  }}><img src={'/icon.svg'} width='30px'  />Flamma network</div>,
   project: {
     link: 'https://github.com/shuding/nextra-docs-template',
   },

@@ -1,0 +1,134 @@
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  The Flamma Network is the overarching framework that coordinates the operation of various modules and components, providing the infrastructure for large-scale commercial applications. It ensures the seamless interaction of all network components and maintains overall network integrity and performance.
+</Callout>
+
+## Structure Diagram
+```
++-------------------------------------------------------+
+|                      Flamma Network                   |
+|                                                       |
+|  +---------------------+  +---------------------+     |
+|  |  Sequence Group 1   |  |  Sequence Group 2   |     |
+|  |  +-----------------+|  |  +-----------------+|     |
+|  |  | Transaction Set ||  |  | Transaction Set ||     |
+|  |  |      Group 1    ||  |  |      Group 2    ||     |
+|  |  +-----------------+|  |  +-----------------+|     |
+|  |          |          ||  |          |          ||   |
+|  |          v          ||  |          v          ||   |
+|  |  +-----------------+|  |  +-----------------+|     |
+|  |  |  Transaction 1  ||  |  |  Transaction 4  ||     |
+|  |  |  Transaction 2  ||  |  |  Transaction 5  ||     |
+|  |  |  Transaction 3  ||  |  |  Transaction 6  ||     |
+|  |  +-----------------+|  |  +-----------------+|     |
+|  +---------------------+  +---------------------+     |
+|                                                       |
+|  +---------------------------------------------------+|
+|  |               Modular Components                  |||
+|  |  +------------+  +------------+  +------------+   |||
+|  |  | Consensus  |  |  Network   |  | Data Store |   |||
+|  |  | Algorithm  |  |   Layer    |  |   Layer    |   |||
+|  |  +------------+  +------------+  +------------+   |||
+|  |                                                   |||
+|  |  +------------+  +------------+  +------------+   |||
+|  |  |   APIs     |  |   Smart    |  |  Interop   |   |||
+|  |  |  & Tools   |  | Contracts  |  |   Layer    |   |||
+|  |  +------------+  +------------+  +------------+   |||
++-------------------------------------------------------+
+            |                 |                  |
+            v                 v                  v
++------------------+  +------------------+  +------------------+
+|  Node Handshake  |  |  Node Handshake  |  |  Node Handshake  |
+|   and Sync       |  |   and Sync       |  |   and Sync       |
+|  +------------+  |  |  +------------+  |  |  +------------+  |
+|  | Node 1     |  |  |  | Node 2     |  |  |  | Node 3     |  |
+|  +------------+  |  |  +------------+  |  |  +------------+  |
++------------------+  +------------------+  +------------------+
+            |                 |                  |
+            +-----------------+--------+---------+
+                              |        |
+                              v        v
+                    +------------------+  +------------------+
+                    |  Node Handshake  |  |  Node Handshake  |
+                    |   and Sync       |  |   and Sync       |
+                    |  +------------+  |  |  +------------+  |
+                    |  | Node 4     |  |  |  |  Node N    |  |
+                    |  +------------+  |  |  +------------+  |
+                    +------------------+  +------------------+
+
+```
+### 1. Sequence Group Modules
+
+Sequence group modules are responsible for grouping and processing transactions in a specific sequence. This sequential grouping optimizes transaction ordering and batch processing, thereby enhancing network performance.
+
+- **Sequence Group 1 and Sequence Group 2:** Represent multiple parallel sequence group modules within the network. Each module handles a portion of the transactions to improve overall throughput. These groups ensure that transaction processing is efficient and scalable.
+
+### 2. Transaction Sets
+
+Within each sequence group module, there are multiple transaction sets that process transactions sequentially. These sets are the fundamental units where transactions are batched and ordered.
+
+- **Transaction Set Group 1 and Group 2:** Each sequence group module contains transaction sets that receive and process transactions in a predetermined order. These sets ensure that transactions are executed in the correct sequence to maintain network consistency.
+
+- **Transactions (Transaction 1 to Transaction 6):** Individual transactions are assigned to different transaction sets for sequential processing. This assignment ensures that all transactions are processed in the correct order and enhances the efficiency of the network.
+
+### 3. Modular Components
+
+The blockchain system is composed of several modular components that can be independently upgraded and replaced to meet various application needs. These components provide the essential services and functionalities required by the network.
+
+- **Consensus Algorithm**
+
+Flamma uses PoS (Proof of Stake) as its consensus mechanism, ensuring that all nodes agree on the order and validity of transactions. Additionally, it implements EPOS (Efficient Proof of Stake) for rapid handshake logic, enhancing node communication efficiency.
+
+- **Network Layer**
+
+Handles communication and data transmission between nodes, ensuring efficient and reliable data propagation within the network. This layer is crucial for maintaining the connectivity and synchronization of all network participants.
+
+- **Data Store Layer**
+
+Responsible for storing transaction data and the blockchain state, ensuring data persistence and consistency. This layer ensures that all historical data is securely stored and can be retrieved when needed.
+
+- **APIs & Tools**
+
+Provide developer tools and interfaces to facilitate the development and deployment of applications on Flamma Network. These tools make it easier for developers to interact with the blockchain and build innovative solutions.
+
+- **Smart Contracts**
+
+Enable the development and execution of decentralized applications (DApps) by automating contract logic. Smart contracts are self-executing contracts where the terms are directly written into code.
+
+- **Interop Layer**
+
+Ensures interoperability with other blockchains and systems, enabling cross-chain data and value transfer. This layer is essential for creating a connected ecosystem of blockchains that can interact seamlessly.
+
+### 4. Node Handshake and Synchronization
+
+The handshake and synchronization process is crucial for establishing and maintaining network connections between nodes. This process ensures that nodes can communicate effectively and stay updated with the latest blockchain state.
+
+- **Node Handshake:** The initial process where nodes discover each other, establish secure communication channels, and exchange basic information to confirm their identities and capabilities. Multiple nodes participate in handshakes to ensure robust network connectivity.
+
+  - **Discovery:** Nodes discover each other using predefined protocols or network broadcasts.
+Identity Verification: Nodes verify each other's identities using cryptographic methods to ensure secure communication.
+
+  - **Capability Exchange:** Nodes exchange information about their capabilities, such as supported protocols, transaction processing capacity, and current state.
+
+  - **Connection Establishment:** Secure communication channels are established using encryption to protect data integrity and privacy.
+
+- **Node Synchronization:** An ongoing process where nodes exchange transaction data and blockchain states to stay in sync with the latest network updates. This ensures all nodes maintain a consistent view of the blockchain.
+
+  - **State Synchronization:** Nodes exchange the latest blockchain state and transaction data to synchronize with the network, ensuring consistency across all nodes.
+
+  - **Periodic Updates:** Nodes periodically synchronize with each other to update the blockchain state and ensure all nodes have the latest information.
+
+## Functional Features
+
+1. **High Performance:** By leveraging sequence group modules and batch processing, Flamma Network enhances transaction processing efficiency and network performance.
+
+2. **Openness:** Open protocols and interfaces support various standards, making it easy for developers to connect and use the network.
+
+3. **Interoperability:** Enables interaction with other blockchains and systems, facilitating cross-chain transfers and interactions.
+
+4. **Decentralization:** The decentralized network structure ensures security and reliability.
+
+5. **Modular Design:** Components can be independently upgraded and replaced, offering flexibility to adapt to different application requirements.
+
+6. **Robust Network Connectivity:** Multiple handshake and synchronization processes ensure stable and secure connections between nodes. These processes guarantee reliable network connectivity and a consistent blockchain state across all nodes.
