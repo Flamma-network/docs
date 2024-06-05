@@ -30,7 +30,7 @@ import { Callout } from 'nextra/components'
     "https://typia.io/docs/",
   ]
 ].map(([alt, image, url]) => (
-  <a href={url} style={{ marginTop: "30px", marginRight: "6px" }}>
+  <a key="alt" href={url} style={{ marginTop: "30px", marginRight: "6px" }}>
       <img src={image} alt={alt} />
   </a>
 ))}
