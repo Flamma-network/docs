@@ -1,4 +1,3 @@
-
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 
@@ -7,11 +6,11 @@ type TProps  = {
 }
 
 export default function Cobe({maxWidth}:TProps) {
-  const canvasRef = useRef();
+  const canvasRef = useRef<HTMLCanvasElement>();
   useEffect(() => {
     let phi = 0;
     let width = 0;
-    const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth)
+    const onResize = () => canvasRef.current && (width = canvasRef.current?.offsetWidth)
     window.addEventListener('resize', onResize)
     onResize()
     const globe = createGlobe(canvasRef.current, {
