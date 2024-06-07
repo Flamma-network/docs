@@ -1,0 +1,139 @@
+# Getting Started with Hardhat on Flamma Network
+
+Hardhat is an Ethereum development environment that helps developers compile, deploy, test, and debug their Ethereum applications. This tutorial will guide you through setting up a Hardhat project on Flamma network.
+
+## Step 1: Install Node.js and npm
+
+Before you start, ensure you have Node.js and npm installed. You can download them from [Node.js](https://nodejs.org/en).
+
+## Step 2: Create a New Project
+
+Open your terminal and create a new directory for your project. Navigate to the directory and initialize a new Node.js project.
+
+``` js copy
+mkdir my-hardhat-project
+cd my-hardhat-project
+npm init -y
+```
+
+## Step 3: Install Hardhat
+
+Install Hardhat in your project directory.
+
+``` js copy
+npm install --save-dev hardhat
+```
+
+## Step 4: Create a Hardhat Project
+
+Run the following command to create a new Hardhat project. Choose "Create a basic sample project" and follow the prompts.
+
+``` js copy
+npx hardhat
+```
+
+## Step 5: Project Structure
+
+After creating the project, your directory should look something like this:
+
+```
+my-hardhat-project/
+├── contracts/
+│   └── Greeter.sol
+├── scripts/
+│   └── sample-script.js
+├── test/
+│   └── sample-test.js
+├── hardhat.config.js
+├── package.json
+└── node_modules/
+```
+
+## Step 6: Configure Flamma Network
+
+Edit your `hardhat.config.js` to add the Flamma network configuration. You'll need the Flamma network RPC URL and a private key.
+
+``` js copy
+require("@nomiclabs/hardhat-waffle");
+
+module.exports = {
+  solidity: "0.8.4",
+  networks: {
+    flamma: {
+      url: "https://rpc.flamma.network", // Replace with the actual Flamma network RPC URL
+      accounts: ["0x..."] // Replace with your private key
+    }
+  }
+};
+```
+
+## Step 7: Compile Contracts
+
+To compile your smart contracts, run:
+
+``` js copy
+npx hardhat compile
+```
+
+## Step 8: Deploy Contracts to Flamma Network
+
+Create a deployment script in the `scripts` folder, for example, `deploy.js`:
+
+``` js copy
+async function main() {
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
+
+  const Greeter = await ethers.getContractFactory("Greeter");
+  const greeter = await Greeter.deploy("Hello, Hardhat!");
+
+  console.log("Greeter deployed to:", greeter.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+Run the deployment script:
+
+```
+npx hardhat run scripts/deploy.js --network flamma
+```
+
+## Step 9: Testing Contracts
+
+Hardhat uses Mocha and Chai for testing. Edit the sample test file or create a new one in the `test` folder:
+
+``` js copy
+const { expect } = require("chai");
+
+describe("Greeter", function () {
+  it("Should return the new greeting once it's changed", async function () {
+    const Greeter = await ethers.getContractFactory("Greeter");
+    const greeter = await Greeter.deploy("Hello, world!");
+    await greeter.deployed();
+
+    expect(await greeter.greet()).to.equal("Hello, world!");
+
+    await greeter.setGreeting("Hola, mundo!");
+    expect(await greeter.greet()).to.equal("Hola, mundo!");
+  });
+});
+```
+
+Run the tests:
+
+```
+npx hardhat test
+```
+
+By following these steps, you should have a basic Hardhat project set up with compiled, deployed, and tested smart contracts on the Flamma network. For more advanced usage and features, refer to the [Hardhat documentation](https://hardhat.org/hardhat-runner/docs/getting-started#overview).
+
+
+
+
+
