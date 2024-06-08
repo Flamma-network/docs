@@ -1,0 +1,173 @@
+# Getting Started with Truffle for EVM Development on the Flamma Network
+
+Truffle is a popular development framework for Ethereum, offering a suite of tools for compiling, deploying, and testing smart contracts. This tutorial will guide you through setting up a project with Truffle and deploying a simple ERC20 token contract on the Flamma network.
+
+## Step 1: Install Node.js and npm
+
+Before you start, ensure you have Node.js and npm installed. You can download them from [Node.js](https://nodejs.org/en).
+
+## Step 2: Install Truffle and Ganache
+
+Open your terminal and install Truffle globally using npm:
+
+``` js copy
+npm install -g truffle
+```
+
+Install Ganache, a personal blockchain for local development and testing:
+
+``` js copy
+npm install -g ganache-cli
+```
+
+## Step 3: Create a New Truffle Project
+
+Create a new directory for your project and navigate to it. Then, initialize a new Truffle project:
+
+``` js copy
+mkdir my-truffle-project
+cd my-truffle-project
+truffle init
+```
+
+Your project directory should now look like this:
+
+```
+my-truffle-project/
+├── contracts/
+│   ├── Migrations.sol
+├── migrations/
+│   └── 1_initial_migration.js
+├── test/
+├── truffle-config.js
+```
+
+## Step 4: Create an ERC20 Token Contract
+
+In the `contracts` folder, create a new file named MyToken.sol and add the following code:
+
+``` js copy
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
+        _mint(msg.sender, initialSupply);
+    }
+}
+```
+This contract creates a simple ERC20 token named "MyToken" with the symbol "MTK".
+
+## Step 5: Create a Migration Script
+
+In the `migrations` folder, create a new file named `2_deploy_contracts.js` and add the following code:
+
+``` js copy
+const MyToken = artifacts.require("MyToken");
+
+module.exports = function (deployer) {
+  deployer.deploy(MyToken, 1000000);
+};
+```
+This script will deploy the MyToken contract with an initial supply of 1,000,000 tokens.
+
+## Step 6: Start Ganache
+
+Start Ganache to create a local blockchain for development:
+
+``` js copy
+ganache-cli
+```
+
+## Step 7: Configure Truffle for Flamma Network
+
+Edit the `truffle-config.js` file to configure the development network and the Flamma network. Add the following code:
+
+``` js copy
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*", // Match any network id
+    },
+    flamma: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://rpc.flamma.network"),
+      network_id: "FLAMMA_NETWORK_ID", // Replace with the actual Flamma network ID
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    }
+  },
+  compilers: {
+    solc: {
+      version: "0.8.0", // Fetch exact version from solc-bin (default: truffle's version)
+    },
+  },
+};
+```
+Replace "FLAMMA_NETWORK_ID" with the actual network ID of the Flamma network.
+
+## Step 8: Compile Contracts
+
+To compile your smart contracts, run:
+
+``` js copy
+truffle compile
+```
+## Step 9: Deploy Contracts
+
+To deploy your contracts to the local Ganache blockchain, run:
+
+``` js copy
+truffle migrate
+```
+
+To deploy your contracts to the Flamma network, run:
+
+``` js copy
+truffle migrate --network flamma
+```
+
+## Step 10: Interact with Your Token
+
+You can interact with your deployed contract using the Truffle console. Open the console by running:
+
+``` js copy
+truffle console --network flamma
+```
+
+In the console, run the following commands:
+
+``` js copy
+const token = await MyToken.deployed();
+const balance = await token.balanceOf(web3.eth.accounts[0]);
+console.log(balance.toString());
+```
+
+## Step 11: Testing Contracts
+
+Create a new file in the `test` folder named `MyToken.test.js` and add the following code to write a simple test:
+
+``` js copy
+const MyToken = artifacts.require("MyToken");
+
+contract("MyToken", (accounts) => {
+  it("should put 1000000 MyToken in the first account", async () => {
+    const tokenInstance = await MyToken.deployed();
+    const balance = await tokenInstance.balanceOf(accounts[0]);
+    assert.equal(balance.valueOf(), 1000000, "1000000 wasn't in the first account");
+  });
+});
+```
+
+Run the test:
+
+``` js copy
+truffle test
+```
+
+By following these steps, you should have a basic ERC20 token contract created with OpenZeppelin, compiled, deployed, and tested using Truffle on both a local blockchain and the Flamma network. For more advanced usage and features, refer to the [Truffle documentation](https://archive.trufflesuite.com/docs/).
