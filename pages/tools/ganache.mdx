@@ -1,0 +1,215 @@
+# Getting Started with Ganache for EVM Development
+
+Ganache is a personal Ethereum blockchain used for local development and testing. It allows developers to simulate blockchain behavior in a controlled environment. This tutorial will guide you through setting up Ganache and using it to develop and deploy smart contracts, with an additional focus on interacting with the Flamma network.
+
+## Step 1: Install Node.js and npm
+
+Ensure you have Node.js and npm installed. You can download them from [Node.js](https://nodejs.org/en).
+
+## Step 2: Install Ganache
+
+Ganache comes in two flavors: a graphical user interface (GUI) and a command-line interface (CLI). For this tutorial, we will use the CLI version. Install it globally using npm:
+
+``` js copy
+npm install -g ganache-cli
+```
+
+## Step 3: Start Ganache
+
+Start Ganache to create a local blockchain. By default, it runs on port 8545:
+
+``` js copy
+ganache-cli
+```
+This command will start a local blockchain with 10 accounts, each preloaded with 100 ETH, and listen on `http://127.0.0.1:8545`.
+
+## Step 4: Create a New Project Directory
+
+Create a new directory for your project and navigate to it:
+
+``` js copy
+mkdir my-ganache-project
+cd my-ganache-project
+```
+
+## Step 5: Initialize a New Node.js Project
+
+Initialize a new Node.js project:
+
+``` js copy
+npm init -y
+```
+## Step 6: Install Web3.js and OpenZeppelin Contracts
+
+Install Web3.js, a library to interact with the Ethereum blockchain, and OpenZeppelin Contracts for secure smart contract development:
+
+``` js copy
+npm install web3 @openzeppelin/contracts
+```
+
+## Step 7: Create an ERC20 Token Contract
+
+In your project directory, create a contracts folder and a file named MyToken.sol inside it. Add the following code:
+
+``` js copy
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
+        _mint(msg.sender, initialSupply);
+    }
+}
+```
+
+This contract creates a simple ERC20 token named "MyToken" with the symbol "MTK".
+
+## Step 8: Create a Deployment Script
+
+In your project directory, create a scripts folder and a file named deploy.js inside it. Add the following code:
+
+``` js copy
+const Web3 = require('web3');
+const MyToken = require('../build/contracts/MyToken.json');
+
+const web3 = new Web3('http://127.0.0.1:8545');
+const { abi, bytecode } = MyToken;
+
+const deploy = async () => {
+  const accounts = await web3.eth.getAccounts();
+  const result = await new web3.eth.Contract(abi)
+    .deploy({ data: bytecode, arguments: [1000000] })
+    .send({ from: accounts[0], gas: '2000000' });
+
+  console.log('Contract deployed to', result.options.address);
+};
+deploy();
+```
+
+## Step 9: Compile the Smart Contract
+
+Compile the smart contract using the `solc` compiler. Create a file named `compile.js` in the `scripts` folder with the following code:
+
+``` js copy
+const path = require('path');
+const fs = require('fs');
+const solc = require('solc');
+
+const contractPath = path.resolve(__dirname, '../contracts', 'MyToken.sol');
+const source = fs.readFileSync(contractPath, 'utf8');
+
+const input = {
+  language: 'Solidity',
+  sources: {
+    'MyToken.sol': {
+      content: source,
+    },
+  },
+  settings: {
+    outputSelection: {
+      '*': {
+        '*': ['abi', 'evm.bytecode'],
+      },
+    },
+  },
+};
+
+const output = JSON.parse(solc.compile(JSON.stringify(input)));
+const contract = output.contracts['MyToken.sol'].MyToken;
+
+fs.writeFileSync(
+  path.resolve(__dirname, '../build/contracts', 'MyToken.json'),
+  JSON.stringify(contract, null, 2)
+);
+```
+
+Run the compile script:
+
+``` js copy
+node scripts/compile.js
+```
+## Step 10: Deploy the Contract on Ganache
+
+Run the deployment script:
+
+``` js copy
+node scripts/deploy.js
+```
+
+## Step 11: Configure for Flamma Network
+
+To deploy your contract on the Flamma network, you'll need an HD Wallet provider and environment variables for your mnemonic and RPC URL. Install the required package:
+
+``` js copy
+npm install @truffle/hdwallet-provider dotenv
+```
+
+Create a `.env` file in your project directory with the following content:
+
+``` js
+MNEMONIC='your mnemonic here'
+FLAMMA_RPC_URL='https://rpc.flamma.network'
+```
+
+## Step 12: Create a Deployment Script for Flamma
+
+Create a file named `deploy-flamma.js` in the `scripts` folder with the following code:
+
+``` js copy
+require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const Web3 = require('web3');
+const MyToken = require('../build/contracts/MyToken.json');
+
+const provider = new HDWalletProvider(process.env.MNEMONIC, process.env.FLAMMA_RPC_URL);
+const web3 = new Web3(provider);
+const { abi, bytecode } = MyToken;
+
+const deploy = async () => {
+  const accounts = await web3.eth.getAccounts();
+  const result = await new web3.eth.Contract(abi)
+    .deploy({ data: bytecode, arguments: [1000000] })
+    .send({ from: accounts[0], gas: '2000000' });
+
+  console.log('Contract deployed to', result.options.address);
+  provider.engine.stop();
+};
+deploy();
+```
+
+## Run the deployment script for the Flamma network:
+
+``` js copy
+node scripts/deploy-flamma.js
+```
+
+## Step 13: Interact with Your Token on Ganache and Flamma
+
+You can interact with your deployed contract using Web3.js scripts or the Truffle console. For example, to check the token balance of an account:
+
+Create a file named `interact.js` in the `scripts` folder with the following code:
+
+``` js copy
+const Web3 = require('web3');
+const MyToken = require('../build/contracts/MyToken.json');
+const web3 = new Web3('http://127.0.0.1:8545');
+const { abi } = MyToken;
+
+const interact = async () => {
+  const accounts = await web3.eth.getAccounts();
+  const token = new web3.eth.Contract(abi, 'YOUR_CONTRACT_ADDRESS');
+  const balance = await token.methods.balanceOf(accounts[0]).call();
+  console.log('Balance:', balance);
+};
+interact();
+```
+
+Replace `YOUR_CONTRACT_ADDRESS` with the actual contract address. Run the script:
+
+``` js copy
+node scripts/interact.js
+```
+
+For more advanced usage and features, refer to the [Ganache documentation](https://archive.trufflesuite.com/docs/ganache/quickstart/).
