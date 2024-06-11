@@ -1,7 +1,6 @@
 {
   "rpc": "RPC Endpoints",  
   "mainnet": "Mainnet",
-    "testnet": "Testnet"
-    
+  "testnet": "Testnet"
   }
   
