@@ -14,6 +14,8 @@ const config: DocsThemeConfig = {
     link: 'https://discord.com',
   },
   docsRepositoryBase: 'https://github.com/Flamma-network/docs',
+  <span className="mr-2 font-extrabold hidden md:inline">Docs</span>
+  </span>
   footer: {
     text: '© 2024 Flamma network',
   },
