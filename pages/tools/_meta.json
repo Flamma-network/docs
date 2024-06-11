@@ -1,6 +1,7 @@
 {
     "hardhat": "Hardhat",
     "truffle": "Truffle",
-    "ganache": "Ganache"
+    "ganache": "Ganache",
+    "solidity": "Solidity"
   }
   

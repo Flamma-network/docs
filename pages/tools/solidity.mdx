@@ -1,0 +1,205 @@
+# Getting Started with Solidity for EVM Development
+
+Solidity is a statically-typed programming language designed for developing smart contracts that run on the Ethereum Virtual Machine (EVM). This tutorial will guide you through setting up a project with Solidity and deploying a smart contract on the Flamma network.
+
+## Step 1: Install Node.js and npm
+
+Ensure you have Node.js and npm installed. You can download them from [Node.js](https://nodejs.org/en).
+
+## Step 2: Create a New Project Directory
+
+Create a new directory for your project and navigate to it:
+
+``` js copy
+mkdir my-solidity-project
+cd my-solidity-project
+```
+
+## Step 3: Initialize a New Node.js Project
+
+Initialize a new Node.js project:
+
+``` js copy
+npm init -y
+```
+
+## Step 4: Install Hardhat
+
+Hardhat is a development environment for compiling, deploying, testing, and debugging Ethereum software. Install Hardhat in your project directory:
+
+``` js copy
+npm install --save-dev hardhat
+```
+
+## Step 5: Set Up Hardhat
+
+Initialize a new Hardhat project:
+
+``` js copy
+npx hardhat
+```
+Choose "Create a basic sample project" and follow the prompts.
+
+## Step 6: Project Structure
+
+After initializing Hardhat, your directory should look something like this:
+
+```
+my-solidity-project/
+├── contracts/
+│   └── Greeter.sol
+├── scripts/
+│   └── sample-script.js
+├── test/
+│   └── sample-test.js
+├── hardhat.config.js
+├── package.json
+└── node_modules/
+```
+
+## Step 7: Create a Smart Contract
+
+In the `contracts` folder, create a new file named `MyContract.sol` and add the following code:
+
+``` js copy
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract MyContract {
+    string public greeting;
+
+    constructor(string memory _greeting) {
+        greeting = _greeting;
+    }
+
+    function setGreeting(string memory _greeting) public {
+        greeting = _greeting;
+    }
+
+    function getGreeting() public view returns (string memory) {
+        return greeting;
+    }
+}
+```
+
+This contract allows you to set and get a greeting message.
+
+## Step 8: Configure Hardhat for Flamma Network
+
+Edit the `hardhat.config.js` file to include the Flamma network configuration. You will need an RPC URL for the Flamma network and your wallet's private key.
+
+First, install the dotenv package to manage environment variables:
+
+``` js copy
+npm install dotenv
+```
+Then, create a `.env` file in your project root with the following content:
+
+``` js copy
+PRIVATE_KEY='your_private_key'
+FLAMMA_RPC_URL='https://rpc.flamma.network'
+```
+Now, update the `hardhat.config.js` file:
+
+``` js copy
+require('@nomiclabs/hardhat-waffle');
+require('dotenv').config();
+
+module.exports = {
+  solidity: '0.8.4',
+  networks: {
+    flamma: {
+      url: process.env.FLAMMA_RPC_URL,
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
+    }
+  }
+};
+```
+
+## Step 9: Compile Contracts
+
+To compile your smart contracts, run:
+
+``` js copy
+npx hardhat compile
+```
+
+Run the compile script:
+
+``` js copy
+node scripts/compile.js
+```
+## Step 10: Deploy Contracts on Flamma Network
+
+Create a deployment script in the `scripts` folder named `deploy.js`:
+
+``` js copy
+async function main() {
+  const [deployer] = await ethers.getSigners();
+  console.log("Deploying contracts with the account:", deployer.address);
+
+  const MyContract = await ethers.getContractFactory("MyContract");
+  const contract = await MyContract.deploy("Hello, Flamma!");
+
+  console.log("MyContract deployed to:", contract.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+Run the deployment script on the Flamma network:
+
+``` js copy
+npx hardhat run scripts/deploy.js --network flamma
+```
+
+## Step 11: Interact with Your Contract
+
+After deployment, you can interact with your contract using Hardhat console. For example, to get the greeting message:
+
+``` js copy
+npx hardhat console --network flamma
+```
+
+In the console, run the following commands:
+
+``` js copy
+const MyContract = await ethers.getContractFactory("MyContract");
+const contract = await MyContract.attach("YOUR_CONTRACT_ADDRESS");
+const greeting = await contract.getGreeting();
+console.log(greeting);
+```
+Replace "YOUR_CONTRACT_ADDRESS" with the actual contract address.
+
+## Step 12: Testing Contracts
+
+Create a new file in the test folder named `MyContract.test.js` and add the following code to write a simple test:
+
+``` js copy
+const { expect } = require("chai");
+
+describe("MyContract", function () {
+  it("Should return the correct greeting", async function () {
+    const MyContract = await ethers.getContractFactory("MyContract");
+    const contract = await MyContract.deploy("Hello, Flamma!");
+    await contract.deployed();
+
+    expect(await contract.getGreeting()).to.equal("Hello, Flamma!");
+
+    await contract.setGreeting("Hello, World!");
+    expect(await contract.getGreeting()).to.equal("Hello, World!");
+  });
+});
+```
+
+Run the test:
+
+``` js copy
+npx hardhat test
+```
+
+By following these steps, you should have a basic smart contract created with Solidity, compiled, deployed, and tested using Hardhat on the Flamma network. For more advanced usage and features, refer to the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.26/introduction-to-smart-contracts.html).
