@@ -11,7 +11,7 @@ const config: DocsThemeConfig = {
     link: 'https://github.com/Flamma-network/docs',
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://discord.gg/CUtsSjn9AA',
   },
   docsRepositoryBase: 'https://github.com/Flamma-network/docs',
   
