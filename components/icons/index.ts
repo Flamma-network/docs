@@ -27,3 +27,13 @@ export { default as TerminalIcon } from './terminal.svg'
 export { default as DiagramIcon } from './diagram.svg'
 export { default as FolderTreeIcon } from './folder-tree.svg'
 export { default as IdCardIcon } from './id-card.svg'
+export { default as MetamaskIcon } from './SVG_MetaMask_Icon_Color.svg'
+export { default as TruffleIcon } from './Truffle_Suite.svg'
+export { default as HardhatIcon } from './hardhat.svg'
+export { default as RemixIcon } from './remix.svg'
+export { default as EthersIcon } from './ethers.svg'
+export { default as Web3jsIcon } from './web3js.svg'
+export { default as SoliditylangIcon } from './soliditylang.svg'
+export { default as OpenZeppelinIcon } from './OpenZeppelin.svg'
+
+
