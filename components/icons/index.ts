@@ -35,5 +35,18 @@ export { default as EthersIcon } from './ethers.svg'
 export { default as Web3jsIcon } from './web3js.svg'
 export { default as SoliditylangIcon } from './soliditylang.svg'
 export { default as OpenZeppelinIcon } from './OpenZeppelin.svg'
+export { default as FlowerIcon } from './flower.svg'
+export { default as Flower2Icon } from './flower2.svg'
+export { default as CoinsIcon } from './coins.svg'
+
+
+
+
+
+
+
+
+
+
 
 

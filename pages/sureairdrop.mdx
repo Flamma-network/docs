@@ -1,5 +1,5 @@
 import Cobe from '@components/Cobe';
-import { StarsIcon } from '/components/icons/index'
+import { StarsIcon ,Flower2Icon ,CoinsIcon } from '/components/icons/index'
 import { Card, Cards } from 'nextra/components';
 
 # Flamma SureAirdrop: 400 Million FLA Tokens for Participants
@@ -39,12 +39,12 @@ The 400 million FLA tokens will be distributed as follows:
 
 ## Participation and Rewards
 
-Participants can earn **[points](/flapoints.mdx)** by completing various tasks, which will then translate into FLA rewards. The system automatically updates rewards daily at UTC time, ensuring timely and accurate distribution of incentives.
+Participants can earn **[points](/flapoints.mdx)** by completing various quests, which will then translate into FLA rewards. The system automatically updates rewards daily at UTC time, ensuring timely and accurate distribution of incentives.
 
 ### How to Participate
 
 1. **Active Testnet Participants:**
-- Earn points for each completed task, contributing to your overall airdrop reward.
+- Earn points for each completed quest, contributing to your overall airdrop reward.
 
 2. **Mainnet Bridge Participants:**
 - Each successful bridge transaction earns points, which accumulate towards your airdrop allocation.
@@ -60,13 +60,13 @@ Participants can earn **[points](/flapoints.mdx)** by completing various tasks, 
 ### Daily Rewards Update
 - Points and corresponding FLA rewards are updated daily at 00:00Z.
 - Participants can track their progress and rewards through the dashboard.
-- Ensure you regularly complete tasks and contribute to maintain and increase your points tally.
+- Ensure you regularly complete quests and contribute to maintain and increase your points tally.
 
 The Flamma SureAirdrop program is a significant opportunity for users and contributors to be rewarded for active participation and contributions to the ecosystem. Flamma aims to incentivize engagement, enhance network security, and foster a thriving community. Participate now to earn your share of FLA and help grow the Flamma Network.
 
 ### Referral code
 
-Participants need to bridge ≥0.005 ETH to unlock a referral code. Once unlocked, they can receive 15% of the points earned by friends who complete tasks as a reward.
+Participants need to bridge at least 0.005 ETH to unlock a referral code and earn up to 5,000 points. Once unlocked, you can receive 15% of the points earned by friends who complete quests.
 
 ## FAQ
 
@@ -86,7 +86,7 @@ export function FAQBox({ title, children }) {
 
 <FAQBox title="What is the difference between Airdrop and SureAirdrop?">
   - A crypto airdrop is a strategy used by blockchain startups to distribute tokens or coins to specific wallet addresses. Usually, this strategy is uncertain.
-  - SureAirdrop, pioneered by Flamma, aims to accurately calculate mainnet token rewards based on participants' contributions to the Flamma network using an algorithm. Participants earn mapped points by completing tasks. These points correspond to **Expected Rewards in FLA**, which will not be diluted or reduced.
+  - SureAirdrop, pioneered by Flamma, aims to accurately calculate mainnet token rewards based on participants' contributions to the Flamma network using an algorithm. Participants earn mapped points by completing quests. These points correspond to **Expected Rewards in FLA**, which will not be diluted or reduced.
 
 </FAQBox>
 
@@ -104,13 +104,31 @@ If you do not have a referral code, you can get one from the [Discord]() or [X](
 
 </FAQBox>
 
+<FAQBox title="Will new quests be updated or added?">
+  Yes, new quests will be continuously updated and added to the website. Please keep an eye on the site for the latest updates and new opportunities to earn points and rewards.
+
+</FAQBox>
+
 <FAQBox title="What is the benefit of using a referral code?">
-  Participants can receive 15% of the points earned by friends who complete tasks.
+  Participants can receive 15% of the points earned by friends who complete quests.
 </FAQBox>
 
 <FAQBox title="Is there a limit to how many friends I can refer?">
-  There is no limit to the number of friends you can refer. The more friends you refer, the more points you can potentially earn through their completed tasks.
+  There is no limit to the number of friends you can refer. The more friends you refer, the more points you can potentially earn through their completed quests.
+</FAQBox>
 
+<FAQBox title="Is there a limit on referral points rewards?">
+  Yes, to better protect the economic ecosystem of Flamma, there is a cap on the referral points rewards for each referral. The specific limits are as follows:
+
+    **Accumulate a Bridged Total of 'x' ETH**
+
+    - Lv1: 0.005 ETH - Max 5,000 points `0/5000`
+    - Lv2: 1 ETH - Max 15,000 points `5000/15000`
+    - Lv3: 2 ETH - Max 35,000 points `15000/35000`
+    - Lv4: 5 ETH - Max 65,000 points `35000/650000`
+    - Lv5: 10 ETH - Max 125,000 points `650000/1250000`
+
+  These limits are designed to ensure the sustainability and health of the Flamma economic ecosystem while providing generous rewards for active participation and referrals.
 </FAQBox>
 
 <FAQBox title="How can I track my points and rewards?">
@@ -119,21 +137,23 @@ If you do not have a referral code, you can get one from the [Discord]() or [X](
 </FAQBox>
 
 <FAQBox title="Can I earn rewards in other ways besides referrals?">
-  Yes, besides referrals, participants can earn rewards by actively participating in various tasks and activities within the Flamma ecosystem. Check the task list for opportunities to earn points.
+  Yes, besides referrals, participants can earn rewards by actively participating in various quests and activities within the Flamma ecosystem. Check the quest list for opportunities to earn points.
 
 </FAQBox>
 
-<Cards num={2}>
-  <Cards.Card
-    image
-    
-    title="Testnet Participants"
-    href="/docs/docs-theme/start"
-  >
-    <>![Documentation theme](/assets/docs-theme.png)</>
-  </Cards.Card>
-  
-  <Cards.Card image title="Blog theme" href="">
-    <>![Blog theme](/assets/blog-theme.png)</>
-  </Cards.Card>
+
+
+<Cards>
+  <Card
+    icon={<Flower2Icon />}
+    title="About Flamma Points"
+    href="/pages/flapoints.mdx"
+    arrow
+  />
+    <Card
+    icon={<CoinsIcon />}
+    title="Tokenomics"
+    href="/pages/concepts/token.mdx"
+    arrow
+  />
 </Cards>
