@@ -14,9 +14,5 @@
     "type": "page",
     "href": "https://flamma.network",
     "newWindow": true
-  },
-  "about": {
-    "title": "About",
-    "type": "page"
   }
 }

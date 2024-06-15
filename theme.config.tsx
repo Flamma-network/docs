@@ -13,6 +13,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://discord.gg/CUtsSjn9AA',
   },
+  
   docsRepositoryBase: 'https://github.com/Flamma-network/docs',
   
   footer: {
