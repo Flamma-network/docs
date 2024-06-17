@@ -1,7 +1,7 @@
 {
     "testfund": "Get $FLA Test Funds",
     "remixide": "Deploy with Remix IDE",
-    "ganache": "Ganache",
+    "erc20": "Create an ERC-20 Token",
     "solidity": "Solidity"
   }
   

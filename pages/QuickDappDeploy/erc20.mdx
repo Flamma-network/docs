@@ -1,0 +1,99 @@
+# How to implement a no-code deployment of an ERC20 token using Remix and OpenZeppelin
+
+## Preparation
+
+Before you start with the actual deployment of the ERC20 token, there are a few preparatory steps you need to follow:
+
+1. Install MetaMask [here](https://metamask.io/).
+
+2. Get Some Test FLA [here](https://flafaucet.dev/).
+
+3. Add FLA Testnet [here](/pages/networks/rpc.mdx).
+
+4. Open [remix](https://remix.ethereum.org/)
+
+## Step 1: Create a new file
+
+Create a file named `erc20.sol` in the contracts directory.
+
+![erc20.sol](/images/erc20_1.png)
+
+## Step 2: Paste the Code and Modify Parameters
+
+Copy and paste the following Solidity code into the `erc20.sol` file. This code imports the OpenZeppelin ERC20 contract and sets up a basic ERC20 token:
+
+``` js copy
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    constructor() ERC20("MyTokenName", "MTK") {
+        _mint(msg.sender, 10000 * (10 ** uint256(decimals())));
+    }
+}
+```
+
+![erc20.sol](/images/erc20_2.png)
+
+
+Change the parameters in the constructor to customize the token:
+
+- **name:** The name of your token. `MyTokenName`
+
+- **symbol:** The symbol of your token. `MTK`
+
+- **initialSupply:** The initial supply of your token `10000`(in whole units, it will be multiplied by 10^decimals() within the contract).
+
+In this example, the token name is "MyTokenName", the symbol is "MTK", and the initial supply is 10,000 tokens.
+
+### For example
+
+Deploy a token with:
+
+ - **name:** LaughCoin
+
+ - **symbol:** LOL
+
+- **initialSupply:** 100000000
+
+![erc20.sol](/images/erc20_3.png)
+
+## Step 3: Compile the Contract
+
+1. Click on the "Solidity Compiler" tab on the left sidebar.
+
+2. Select the appropriate compiler version (0.8.x).
+
+3. Click on "Advanced Configurations" to expand the advanced settings.
+
+4. Choose EVM Version "paris".
+
+5. Click "Compile erc20.sol".
+
+![erc20.sol](/images/erc20_4.png)
+
+## Step 4: Deploy the Contract
+
+1. Click on the "Deploy & Run Transactions" tab on the left sidebar.
+
+2. Set the environment to "Injected Web3" if you are using MetaMask, or "JavaScript VM" for a simulated environment.
+
+3. Click "Deploy".
+
+![erc20.sol](/images/erc20_5.png)
+
+![erc20.sol](/images/erc20_6.png)
+
+## Step 5: Expand the Deployed Contract
+
+1. In the "Deployed Contracts" section, find the contract you just deployed.
+
+2. Click on the contract name to expand it. This will show you a list of available functions and variables that you can interact with.
+
+![erc20.sol](/images/erc20_7.png)
+
+
+
+
