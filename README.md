@@ -1,6 +1,8 @@
 ![flamma](public/banner.png)
 
-[![Static Badge](https://img.shields.io/badge/website-flamma%20network-brightgreen)](https://docs.flamma.network/)
+[![Static Badge](https://img.shields.io/badge/website-flamma.network-brightgreen)](https://docs.flamma.network/)
+
+
 
 # Overview
  
