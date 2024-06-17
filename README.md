@@ -8,6 +8,26 @@
 
 ![flamma](public/banner.png)
 
+<span style={{ display: "flex", flexDirection: "row" }}>
+{[
+  [
+    "MIT License",
+    "https://img.shields.io/badge/license-MIT-blue.svg",
+    "https://github.com/Flamma-network/docs/blob/main/LICENSE",
+  ],
+
+  [
+    "Website",
+    "https://img.shields.io/website?url=https%3A%2F%2Fdocs.flamma.network&up_message=flamma%20network",
+    "https://docs.flamma.network/",
+  ]
+].map(([alt, image, url]) => (
+  <a key="alt" href={url} style={{ marginTop: "30px", marginRight: "6px" }}>
+      <img src={image} alt={alt} />
+  </a>
+))}
+</span>
+
 # Overview
  
 Flamma is a sequence-based blockchain designed for large-scale commercial applications. It features a high-performance network suitable for various use cases, including finance, payments, and gaming. The Flamma Network is open, interoperable, and decentralized, allowing anyone to quickly build super applications on its platform.
