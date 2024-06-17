@@ -8,9 +8,7 @@
 
 ![flamma](public/banner.png)
 
-<img alt="Static Badge" src="https://img.shields.io/badge/website-flamma%20network-brightgreen?link=https%3A%2F%2Fdocs.flamma.network%2F">
-![Static Badge](https://img.shields.io/badge/website-flamma%20network-brightgreen?link=https%3A%2F%2Fdocs.flamma.network%2F)
-
+[!Static Badge](https://img.shields.io/badge/website-flamma%20network-brightgreen)(https://docs.flamma.network/)
 
 # Overview
  
