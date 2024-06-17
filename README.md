@@ -8,7 +8,9 @@
 
 ![flamma](public/banner.png)
 
-[!Static Badge](https://img.shields.io/badge/website-flamma%20network-brightgreen)(https://docs.flamma.network/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Flamma-network/docs/blob/main/LICENSE)
+
+[![Static Badge](https://img.shields.io/badge/website-flamma%20network-brightgreen)](https://docs.flamma.network/)
 
 # Overview
  
