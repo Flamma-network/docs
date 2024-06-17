@@ -1,4 +1,4 @@
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fflamma.network%2F)
+![Website](https://docs.flamma.network/)
 ![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/%40flamma_network)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Flamma-network/docs/blob/main/LICENSE)
 ![X (formerly Twitter) URL](https://img.shields.io/twitter/url?url=https%3A%2F%2Fx.com%2Fflamma_network)
