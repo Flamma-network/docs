@@ -2,6 +2,6 @@
     "testfund": "Get $FLA Test Funds",
     "remixide": "Deploy with Remix IDE",
     "erc20": "Create an ERC-20 Token",
-    "solidity": "Solidity"
+    "erc721": "Deploying an ERC-721 NFT Collection "
   }
   
