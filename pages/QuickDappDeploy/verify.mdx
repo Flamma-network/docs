@@ -1,0 +1,80 @@
+# Detailed Guide to Verify the "SunFlower" NFT Smart Contract on flascan
+
+This guide will walk you through the process of verifying the "SunFlower" NFT smart contract on Blockscout, using the example contract that was previously deployed. Verifying your contract ensures transparency and allows others to view the source code and interact with the contract.
+
+## Prerequisites
+
+1. Remix IDE: Your contract should be deployed via Remix IDE.
+2. Source Code: Your smart contract source code and its dependencies. (e.g., SunFlower NFT Collection `0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB`)
+3. Explorer: The blockchain instance for the network where your contract is deployed (e.g., https://testnet.flascan.net/).
+
+## Step 1: Obtain Contract Details
+
+**SunFlower NFT Example:**
+
+Contract: `0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB`
+
+## Step 2: Flatten the Contracts
+Go to [Remix](https://remix.ethereum.org/).
+
+1. Right-click on the `SunFlower.sol` file in the Remix file explorer.
+2. Select "Flatten" from the context menu.
+![erc721.sol](/images/verifysc_0.png)
+3. Remix will generate a flattened version of the contract `sunflower_flattened.sol` and open it in a new file.
+![erc721.sol](/images/verifysc_1.png)
+
+## Step 3: Start Verification on flascan
+
+1. Go to contract [SunFlower](https://testnet.flascan.net/token/0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB?tab=contract).
+
+2. On the contract page, click on the “Verify & Publish” button.
+![erc721.sol](/images/verifysc_2.png)
+
+3. Enter Verification Details:
+
+- **Contract license**
+
+    Select "No License"
+
+- **Verification method**
+
+    Solidity (Flattened source code)
+
+- **Compiler**
+
+    v0.8.26+commit.8a97fa7a
+
+- **EVM Version**
+
+    paris
+
+- **Optimization enabled**
+
+    200
+
+- **Contract code**
+
+    Copy and paste `sunflower_flattened.sol`.
+
+- **Verify & Publish**
+
+    Submit your contract for verification.
+
+The page should be like:
+
+![erc721.sol](/images/verifysc_3.png)
+
+## Step 4: Verification Status
+
+- **Wait for Verification:**
+
+    Wait for Blockscout to process the verification.
+
+    If successful, your contract source code and ABI will be publicly available on flascan.
+
+![erc721.sol](/images/verifysc_4.png)
+
+- **Troubleshooting:**
+
+    If verification fails, check for common issues such as mismatched compiler versions, incorrect optimization settings, or incorrectly entered constructor arguments.
+
