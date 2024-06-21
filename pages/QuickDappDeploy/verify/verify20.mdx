@@ -5,32 +5,37 @@ This guide will walk you through the process of verifying the "SunFlower" NFT sm
 ## Prerequisites
 
 1. Remix IDE: Your contract should be deployed via Remix IDE.
-2. Source Code: Your smart contract source code and its dependencies. (e.g., SunFlower NFT Collection `0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB`)
+
+2. Source Code: Your smart contract source code and its dependencies. (e.g., `LaughCoin`, `LOL`, `0xFd764C240Afcb7643B9a8c6CD42682425DEAd89F`)
+
 3. Explorer: The blockchain instance for the network where your contract is deployed (e.g., https://testnet.flascan.net/).
 
-> If you have not already deployed the contract, please refer to the instructions provided [Deploying an ERC-721 NFT Collection](/pages/QuickDappDeploy/erc721.mdx).
+> If you have not already deployed the contract, please refer to the instructions provided [Create an ERC-20 token](/pages/QuickDappDeploy/erc20.mdx).
 
-## Step 1: Obtain Contract Details
+## Step 1: Get Contract Details
 
-**SunFlower NFT Example:**
+Enter `LaughCoin` contract address `0xFd764C240Afcb7643B9a8c6CD42682425DEAd89F`.
 
-Contract: `0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB`
+Click "At Address" to interact with the already deployed contract.
+
+![verify20](/images/verify20_0.png)
+
 
 ## Step 2: Flatten the Contracts
 Go to [Remix](https://remix.ethereum.org/).
 
-1. Right-click on the `SunFlower.sol` file in the Remix file explorer.
+1. Right-click on the `erc20.sol` file in the Remix file explorer.
 2. Select "Flatten" from the context menu.
-![erc721.sol](/images/verifysc_0.png)
-3. Remix will generate a flattened version of the contract `sunflower_flattened.sol` and open it in a new file.
-![erc721.sol](/images/verifysc_1.png)
+![verify20](/images/verify20_1.png)
+3. Remix will generate a flattened version of the contract `erc20_flattened.sol` and open it in a new file.
+![verify20](/images/verify20_2.png)
 
 ## Step 3: Start Verification on flascan
 
-1. Go to contract [SunFlower](https://testnet.flascan.net/token/0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB?tab=contract).
+1. Go to contract [LaughCoin](https://testnet.flascan.net/address/0xFd764C240Afcb7643B9a8c6CD42682425DEAd89F?tab=contract).
 
 2. On the contract page, click on the “Verify & Publish” button.
-![erc721.sol](/images/verifysc_2.png)
+![verify20](/images/verify20_3.png)
 
 3. Enter Verification Details:
 

@@ -1,4 +1,5 @@
 {
-    "verify721": "Verify ERC-721 Smart Contract"
+    "verify721": "Verify ERC-721 Smart Contract",
+    "verify20": "Verify ERC-20 Smart Contract"
     }
     
