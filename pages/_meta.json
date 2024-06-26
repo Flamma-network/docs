@@ -4,12 +4,36 @@
   "flapoints": "Fla points",
   "governance": "Governance",
   "structure": "Chain Structure",
-  "QuickDappDeploy": "QuickDappDeploy",
+
+  "-- Bridge": {
+    "type": "separator",
+    "title": "Bridge"
+  },
+  "deposit": "Deposit",
+  "withdraw": "Withdraw",
+  "mappedtokens": "Mapped Tokens",
+
+  "-- Build": {
+    "type": "separator",
+    "title": "Build"
+  },
   "networks": "Networks",
-  "bridge": "Bridge",
+  "QuickDappDeploy": "QuickDappDeploy",
   "tools": "DevTools",
   "grants": "Grants",
-  "concepts": "Concepts",
+
+
+  "-- More": {
+    "type": "separator",
+    "title": "Concepts"
+  },
+  "token": "FLA Token",
+  "metatransactions": "Metatransactions",
+  "press-kit": {
+    "title": "PressKit (download)",
+    "href": "https://github.com/Flamma-network/docs/raw/main/public/Presskit/Flamma_brand.zip"
+  },
+
 
   "contact": {
     "title": "Home ↗",
