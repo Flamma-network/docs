@@ -38,6 +38,7 @@ export { default as OpenZeppelinIcon } from './OpenZeppelin.svg'
 export { default as FlowerIcon } from './flower.svg'
 export { default as Flower2Icon } from './flower2.svg'
 export { default as CoinsIcon } from './coins.svg'
+export { default as TwitterX } from './twitterx.svg';
 
 
 
