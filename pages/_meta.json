@@ -4,6 +4,7 @@
   "flapoints": "Fla points",
   "governance": "Governance",
   "structure": "Chain Structure",
+  "network": "Network",
 
   "-- Bridge": {
     "type": "separator",
@@ -17,7 +18,7 @@
     "type": "separator",
     "title": "Build"
   },
-  "networks": "Networks",
+
   "QuickDappDeploy": "QuickDappDeploy",
   "tools": "DevTools",
   "grants": "Grants",
