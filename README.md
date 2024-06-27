@@ -13,9 +13,9 @@ Flamma is a sequence-based blockchain designed for large-scale commercial applic
 | Kickoff   |  |
 | :----- | :---- |
 | [Get $FLA Test Funds](https://flafaucet.dev/)     |  Get test tokens to use on the Flamma network for development and testing purposes.   |
-| [Deploy with Remix IDE]() | Utilize the Remix Integrated Development Environment to write, compile, and deploy smart contracts effortlessly.  |
-| [Create an ERC-20 Token (🛩️No Code)](/pages/QuickDappDeploy/erc20.mdx) | how to implement a no-code deployment of an ERC20 token using Remix and OpenZeppelin.  |
-| [Deploy an NFT Collection (🛩️No Code)]() | Launch a collection of [ERC-721](https://eips.ethereum.org/EIPS/eip-721) Non-Fungible Tokens (NFTs) to represent unique digital assets.  |
+| [Deploy with Remix IDE](/QuickDappDeploy/remixide.mdx) | Utilize the Remix Integrated Development Environment to write, compile, and deploy smart contracts effortlessly.  |
+| [Create an ERC-20 Token (🛩️No Code)](/QuickDappDeploy/erc20.mdx) | How to implement a no-code deployment of an ERC20 token using Remix and OpenZeppelin.  |
+| [Deploy an NFT Collection (🛩️No Code)](/QuickDappDeploy/erc721.mdx) | Guide to Deploying an ERC-721 NFT Collection Named "SunFlower" with Remix and OpenZeppelin, and Storing Metadata with Pinata.cloud.  |
 | [Integrate a Wallet in Your Front-End Application]() | Integrating a cryptocurrency wallet into your front-end application allows users to interact directly with the Flamma network from your website.  |
 | [ERC20 Token Claim Front-End Template]() | This front-end template allows users to claim their ERC20 tokens seamlessly. Built with modern web technologies, the template provides an intuitive and secure interface for interacting with smart contracts.  |
 
@@ -33,4 +33,16 @@ The Flamma Network fully supports all standard Ethereum Virtual Machine (EVM) de
 | [Hardhat](https://hardhat.org/) | A flexible and extensible development environment for Ethereum that simplifies smart contract development and testing.  |
 | [Web3.js](https://web3js.readthedocs.io/en/v1.10.0/) | A JavaScript library that enables developers to interact with the Ethereum blockchain. It can be used for deploying smart contracts, sending transactions, and more.  |
 | [Ethers.js]([Ethers.js](https://docs.ethers.org/v5/)) | A library for interacting with the Ethereum blockchain and its ecosystem. It is designed to be a complete and compact library for managing Ethereum wallets and smart contracts.  |
+
+## Learn More Flamma
+
+Webiste: https://www.flamma.network/
+
+X: https://x.com/flamma_network
+
+Discord: https://discord.gg/CUtsSjn9AA
+
+Telegram: https://t.me/flamma_network
+
+Medium: https://medium.com/@flammanetwork
 
