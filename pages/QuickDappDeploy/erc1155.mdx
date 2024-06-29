@@ -26,46 +26,211 @@ Before you start with the actual deployment of the NFT Collection, there are a f
 
 5. Open [remix](https://remix.ethereum.org/).
 
-6. Download Icecream NFT Sourcefile [here]()
+6. Download Icecream NFT Sourcefile [here](https://github.com/Flamma-network/docs/raw/main/public/zip/icecream.zip).
+
+![erc1155.sol](/images/erc1155_0.png)
 
 ## Step 1: Create a new file
 
-Create a file named `SunFlower.sol` in the contracts directory.
+Create a file named `Icecream.sol` in the contracts directory.
 
-![erc721.sol](/images/erc721_0.png)
+![erc1155.sol](/images/erc1155_1.png)
 
-## Step 2: Write the ERC-721 Smart Contract
+## Step 2: Write the ERC-1155 Smart Contract
 
-Copy the following code and paste it into your `SunFlower.sol` file:
+Copy the following code and paste it into your `Icecream.sol` file:
 
 ``` js copy
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract SunFlowerNFT is ERC721URIStorage, Ownable {
-    constructor() ERC721("SunFlower", "SF") Ownable(msg.sender) {}
+contract Icecream is ERC1155, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-    uint256 public constant MAX_SUPPLY = 10;
 
-    function createCollectible(string memory tokenURI) public onlyOwner returns (uint256) {
-        require(_tokenIds.current() < MAX_SUPPLY, "All NFTs have been minted");
+    string public name = "Icecream";
+    string public symbol = "ICRM";
+    string private constant _uri = "https://"; // Replace with your metadata URI
+
+    constructor() ERC1155(_uri) Ownable(msg.sender) {}
+
+    function mint(uint256 amount) public {
         _tokenIds.increment();
-        uint256 newItemId = _tokenIds.current()-1;
-        _mint(msg.sender, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-        return newItemId;
+        uint256 newItemId = _tokenIds.current();
+        _mint(msg.sender, newItemId, amount, "");
+    }
+
+    function mintBatch(uint256 numberOfTokens) public {
+        uint256[] memory ids = new uint256[](numberOfTokens);
+        uint256[] memory amounts = new uint256[](numberOfTokens);
+        
+        for (uint256 i = 0; i < numberOfTokens; i++) {
+            _tokenIds.increment();
+            ids[i] = _tokenIds.current();
+            amounts[i] = 1;  // Each new token ID has 1 NFT
+        }
+        
+        _mintBatch(msg.sender, ids, amounts, "");
+    }
+
+    function uri(uint256) override public pure returns (string memory) {
+        return _uri;
     }
 }
-```
-![erc721.sol](/images/erc721_1.png)
 
-## Step 3: Compile the Smart Contract
+```
+![erc1155.sol](/images/erc1155_2.png)
+
+### Explanation
+
+1. Imports
+
+- ERC1155.sol: The ERC-1155 standard implementation.
+- Ownable.sol: Simplifies access control, making certain functions accessible only to the contract owner.
+- Counters.sol: Utility for incrementing token IDs.
+
+2. Contract Declaration
+
+- The Icecream contract inherits from ERC1155 and Ownable.
+
+3. State Variables
+
+- name and symbol: Define the collection name and symbol.
+- _uri: Metadata URI for the NFTs.
+- _tokenIds: Counter to generate unique token IDs.
+
+4. Constructor:
+
+Initializes the ERC1155 contract with the URI and sets the contract deployer as the owner.
+
+5. Mint Functions:
+
+- mint: Mints a specified amount of a new token ID to the sender.
+- mintBatch: Mints a specified number of new token IDs, each with a quantity of 1, to the sender.
+
+6. URI Function:
+
+- uri: Returns the metadata URI for a given token ID.
+
+## Step 3: Store NFT Metadata with Pinata.cloud
+
+### 1. Sign Up and Log In to Pinata.cloud
+
+Go to [Pinata.cloud](https://www.pinata.cloud/) and sign up for an account if you don't have one.
+
+### 2. Upload Image to Pinata.cloud
+
+<Callout type="info" emoji="ℹ️">
+    Download "Icecream" NFT images source file [here](https://github.com/Flamma-network/docs/raw/main/public/zip/icecream.zip).
+</Callout>
+
+1. Click on "Upload" in the Pinata dashboard and select "Folder".
+
+2. Upload the "Icecream" NFT Source file.
+
+3. After uploading, Pinata will provide an IPFS CID (Content Identifier) for the image file.
+
+![erc1155.sol](/images/erc1155_3.png)
+
+<Callout emoji="👾">
+  **Note this CID URL** `https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/QmT1QkBfFtDhTuZRPGtDqFTAZjFyb31e8rTHoVyL9SUeYY/ice-cream.png`, as it will be used when minting the NFT.
+</Callout>
+
+### 3. Create Metadata JSON File
+
+1. Create a JSON file with the following structure.
+
+``` js copy
+{
+  "name": "Icecream",
+  "description": "Delicious icecream NFT",
+  "image": "<CID_of_your_image>"
+}
+```
+
+2. Replace `<CID_of_your_image>`.
+
+``` js copy
+{
+  "name": "Icecream",
+  "description": "Delicious icecream NFT",
+  "image": "https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/QmT1QkBfFtDhTuZRPGtDqFTAZjFyb31e8rTHoVyL9SUeYY/ice-cream.png"
+}
+```
+
+3. Upload Metadata JSON to Pinata.cloud
+
+![erc1155.sol](/images/erc1155_4.png)
+
+4. Get the `CID_of_your_metadata`
+
+``` js copy
+
+https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/QmRPVJjKNYfxbVoDZ6k71MCAjkQhynX2mzT5HKNbE9YZBE/0.json
+
+```
+
+## Step 4: Update the ERC-1155 Smart Contract
+
+Replace "string private constant _uri = `"https://";`" 
+ 
+<Callout emoji="💡">
+This step ensures the consistency of your ERC-1155 NFTs by defining a unified metadata URI for all tokens within the collection. 
+
+By setting a common URI, all NFTs minted from this contract will share the same metadata structure, which includes crucial details like name, description, and image. This standardization simplifies the management and retrieval of NFT metadata, ensuring a cohesive and consistent experience for users and collectors.
+</Callout>
+
+
+``` js copy
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+contract Icecream is ERC1155, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    string public name = "Icecream";
+    string public symbol = "ICRM";
+    string private constant _uri = "https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/QmRPVJjKNYfxbVoDZ6k71MCAjkQhynX2mzT5HKNbE9YZBE/0.json"; // Replace with your metadata URI
+
+    constructor() ERC1155(_uri) Ownable(msg.sender) {}
+
+    function mint(uint256 amount) public {
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
+        _mint(msg.sender, newItemId, amount, "");
+    }
+
+    function mintBatch(uint256 numberOfTokens) public {
+        uint256[] memory ids = new uint256[](numberOfTokens);
+        uint256[] memory amounts = new uint256[](numberOfTokens);
+        
+        for (uint256 i = 0; i < numberOfTokens; i++) {
+            _tokenIds.increment();
+            ids[i] = _tokenIds.current();
+            amounts[i] = 1;  // Each new token ID has 1 NFT
+        }
+        
+        _mintBatch(msg.sender, ids, amounts, "");
+    }
+
+    function uri(uint256) override public pure returns (string memory) {
+        return _uri;
+    }
+}
+
+```
+
+
+## Step 5: Compile the Smart Contract
 
 1. Click on the "Solidity Compiler" tab on the left sidebar.
 
@@ -75,85 +240,61 @@ contract SunFlowerNFT is ERC721URIStorage, Ownable {
 
 4. Choose EVM Version "Paris".
 
-5. Click "Compile SunFlower.sol" button. Ensure there are no compilation errors.
+5. Click "Compile Icecream.sol" button. Ensure there are no compilation errors.
 
-![erc721.sol](/images/erc721_2.png)
+![erc1155.sol](/images/erc1155_5.png)
 
-## Step 4: Deploy the Smart Contract
+## Step 6: Deploy the Smart Contract
 
 1. Navigate to the "Deploy & Run Transactions" tab in Remix.
 
 2. In the "ENVIRONMENT" dropdown, select "Injected Web3" to connect Remix to your MetaMask wallet.
 
-3. Select the SunFlowerNFT contract from the dropdown menu.
+3. Select the "Icecream" contract from the dropdown menu.
 
 4. Click "Deploy" and confirm the transaction in your MetaMask wallet.
 
-![erc721.sol](/images/erc721_3.png)
+![erc1155.sol](/images/erc1155_6.png)
 
 ## Step 5: Wait for Deployment
 
 After confirmation, you will see the deployed contract address in the Remix console.
 
-![erc721.sol](/images/erc721_4.png)
+![erc1155.sol](/images/erc1155_7.png)
 
-> The demo SunFlower NFT Contract: [0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB](https://testnet.flascan.net/address/0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB)
+> The demo Icecream ERC1155 NFT Contract: [0xD380F6A048d3ab45B1EDb90fDF10BF65187e4539](https://testnet.flascan.net/token/0xD380F6A048d3ab45B1EDb90fDF10BF65187e4539)
 
-## Step 6: Store NFT Metadata with Pinata.cloud
 
-### 1. Sign Up and Log In to Pinata.cloud
+## Step 7: Mint NFTs
 
-Go to [Pinata.cloud](https://www.pinata.cloud/) and sign up for an account if you don't have one.
+1. Mint Single Token:
 
-### 2. Upload Image to Pinata.cloud
+- After deployment, locate the mint function in the deployed contract section.
+- Enter the amount of NFTs you want to mint (e.g., 1).
+- Click "transact" and confirm the transaction in MetaMask.
 
-<Callout type="info" emoji="ℹ️">
-    Download "SunFlower" NFT images source file [here](https://github.com/Flamma-network/docs/raw/main/public/zip/SunFlower_nft.7z).
-</Callout>
+![erc1155.sol](/images/erc1155_8.png)
 
-1. Click on "Upload" in the Pinata dashboard and select "Folder".
+Result:
+![erc1155.sol](/images/erc1155_9.png)
 
-![erc721.sol](/images/erc721_8.png)
 
-2. Upload the "SunFlower" NFT Source file.
+2. Mint Batch of Tokens:
 
-3. After uploading, Pinata will provide an IPFS CID (Content Identifier) for the image file.
+- Locate the mintBatch function.
+- Enter the number of new token IDs you want to mint (e.g., 4).
+- Click "transact" and confirm the transaction in MetaMask.
+- The `mintBatch` function allows minting 4 NFTs with a single gas payment.
 
-![erc721.sol](/images/erc721_6.png)
+![erc1155.sol](/images/erc1155_10.png)
 
-<Callout emoji="👾">
-  **Note this CID URL** `https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/0.jpg`, as it will be used when minting the NFT.
-</Callout>
+Result:
+![erc1155.sol](/images/erc1155_11.png)
 
-### 3. Create Metadata JSON File
 
-1. Create a JSON file with the following structure.
 
-``` js copy
-{
-  "name": "SunFlower NFT #0",
-  "description": "This is an NFT from the SunFlower collection.",
-  "image": "<CID_of_your_image>"
-}
-```
 
-2. Replace `<CID_of_your_image>`.
-
-``` js copy
-{
-  "name": "SunFlower NFT #0",
-  "description": "This is an NFT from the SunFlower collection.",
-  "image": "https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/0.jpg"
-}
-```
-
-3. Upload Metadata JSON to Pinata.cloud
-
-![erc721.sol](/images/erc721_7.png)
-
-## Step 7: Mint an NFT with Metadata
-
-1. Call the "createCollectible" function, 
+1. Call the "mint" function, 
 
 2. Enter the TokenURI of the metadata stored on Pinata (e.g., you want to mint SunFlower #0: `https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/0.jpg`).
 
