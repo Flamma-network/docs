@@ -15,7 +15,8 @@ Flamma is a sequence-based blockchain designed for large-scale commercial applic
 | [Get $FLA Test Funds](https://flafaucet.dev/)     |  Get test tokens to use on the Flamma network for development and testing purposes.   |
 | [Deploy with Remix IDE](https://docs.flamma.network/QuickDappDeploy/remixide) | Utilize the Remix Integrated Development Environment to write, compile, and deploy smart contracts effortlessly.  |
 | [Create an ERC-20 Token (🛩️No Code)](https://docs.flamma.network/QuickDappDeploy/erc20) | How to implement a no-code deployment of an ERC20 token using Remix and OpenZeppelin.  |
-| [Deploy an NFT Collection (🛩️No Code)](https://docs.flamma.network/QuickDappDeploy/erc721) | Guide to Deploying an ERC-721 NFT Collection Named "SunFlower" with Remix and OpenZeppelin, and Storing Metadata with Pinata.cloud.  |
+| [Deploying an ERC-721 NFT Collection (🛩️No Code)](https://docs.flamma.network/QuickDappDeploy/erc721) | Guide to Deploying an ERC-721 NFT Collection Named "SunFlower" with Remix and OpenZeppelin, and Storing Metadata with Pinata.cloud.  |
+| [Deploying an ERC-1155 NFT Collection (🛩️No Code)](/QuickDappDeploy/erc1155.mdx) | Guide to Deploying an ERC-1155 NFT Collection Named "Icecream" with Remix and OpenZeppelin, and Storing Metadata with Pinata.cloud.  |
 | [Verify ERC-20 Smart Contract](https://docs.flamma.network/QuickDappDeploy/verify/verify20) | Detailed Guide to Verify the "LaughCoin" ERC-20 Smart Contract on flascan.  |
 | [Verify ERC-721 Smart Contract](https://docs.flamma.network/QuickDappDeploy/verify/verify721) | Detailed Guide to Verify the "SunFlower" NFT Smart Contract on flascan.  |
 | [Integrate a Wallet in Your Front-End Application]() | Integrating a cryptocurrency wallet into your front-end application allows users to interact directly with the Flamma network from your website.  |
