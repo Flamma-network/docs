@@ -1,0 +1,86 @@
+# Detailed Guide to Verify the "Icecream" NFT Smart Contract on flascan
+
+This guide will walk you through the process of verifying the "Icecream" NFT smart contract on Blockscout, using the example contract that was previously deployed. Verifying your contract ensures transparency and allows others to view the source code and interact with the contract.
+
+## Prerequisites
+
+1. Remix IDE: Your contract should be deployed via Remix IDE.
+2. Source Code: Your smart contract source code and its dependencies. (e.g., Icecream NFT Collection `0xD380F6A048d3ab45B1EDb90fDF10BF65187e4539`)
+3. Flascan: https://testnet.flascan.net.
+
+> If you have not already deployed the contract, please refer to the instructions provided [Deploying an ERC-1155 NFT Collection](/QuickDappDeploy/erc1155.mdx).
+
+## Step 1: Obtain Contract Details
+
+**Icecream NFT Example:**
+
+Contract: `0xD380F6A048d3ab45B1EDb90fDF10BF65187e4539`
+
+## Step 2: Flatten the Contracts
+Go to [Remix](https://remix.ethereum.org/).
+
+1. Right-click on the `Icecream_erc1155.sol` file in the Remix file explorer.
+2. Select "Flatten" from the context menu.
+![erc1155.sol](/images/verifysc1155_0.png)
+3. Remix will generate a flattened version of the contract `Icecream_erc1155_flattened.sol` and open it in a new file.
+![erc1155.sol](/images/verifysc1155_1.png)
+
+## Step 3: Start Verification on flascan
+
+1. Go to contract [Icecream](https://testnet.flascan.net/address/0xD380F6A048d3ab45B1EDb90fDF10BF65187e4539?tab=contract).
+
+2. On the contract page, click on the “Verify & Publish” button.
+![erc1155.sol](/images/verifysc1155_2.png)
+
+3. Enter Verification Details:
+
+- **Contract license**
+
+    Select "MIT License"
+
+- **Verification method**
+
+    Solidity (Flattened source code)
+
+- **Compiler**
+
+    v0.8.26+commit.8a97fa7a
+
+- **EVM Version**
+
+    paris
+
+- **Optimization enabled**
+
+    200
+
+- **Contract code**
+
+    Copy and paste `Icecream_erc1155_flattened.sol`.
+
+- **Verify & Publish**
+
+    Submit your contract for verification.
+
+The page should be like:
+
+![erc1155.sol](/images/verifysc1155_3.png)
+
+## Step 4: Verification Status
+
+- **Wait for Verification:**
+
+    Wait for Blockscout to process the verification.
+
+    If successful, your contract source code and ABI will be publicly available on flascan.
+
+![erc1155.sol](/images/verifysc1155_4.png)
+
+- **Troubleshooting:**
+
+    If verification fails, check for common issues such as mismatched compiler versions, incorrect optimization settings, or incorrectly entered constructor arguments.
+
+---
+
+**Well done! Congrats on successfully verifying your contract! 🎉**
+

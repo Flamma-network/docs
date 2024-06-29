@@ -32,13 +32,13 @@ Before you start with the actual deployment of the NFT Collection, there are a f
 
 ## Step 1: Create a new file
 
-Create a file named `Icecream.sol` in the contracts directory.
+Create a file named `Icecream_erc1155.sol` in the contracts directory.
 
 ![erc1155.sol](/images/erc1155_1.png)
 
 ## Step 2: Write the ERC-1155 Smart Contract
 
-Copy the following code and paste it into your `Icecream.sol` file:
+Copy the following code and paste it into your `Icecream_erc1155.sol` file:
 
 ``` js copy
 // SPDX-License-Identifier: MIT
@@ -243,7 +243,7 @@ contract Icecream is ERC1155, Ownable {
 
 4. Choose EVM Version "Paris".
 
-5. Click "Compile Icecream.sol" button. Ensure there are no compilation errors.
+5. Click "Compile Icecream_erc1155.sol" button. Ensure there are no compilation errors.
 
 ![erc1155.sol](/images/erc1155_5.png)
 
@@ -313,7 +313,7 @@ Result:
   <Card
     icon={<StarsIcon />}
     title="How to verify smart contract"
-    href="/QuickDappDeploy/verify/verify721"
+    href="/QuickDappDeploy/verify/verify1155"
     arrow
   />
 </Cards>
