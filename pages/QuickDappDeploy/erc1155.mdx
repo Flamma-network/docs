@@ -1,0 +1,198 @@
+import { Callout } from 'nextra/components'
+import { StarsIcon ,Flower2Icon ,CoinsIcon } from '/components/icons/index'
+import { Card, Cards } from 'nextra/components';
+
+# Deploying an ERC-1155 NFT Collection Named "Icecream" with Remix and OpenZeppelin, and Storing Metadata with Pinata.cloud
+
+This guide will walk you through the process of deploying an ERC-1155 NFT collection named "Icecream" using Remix IDE, OpenZeppelin, and Pinata.cloud for storing NFT metadata.
+
+The "Icecream" collection will have:
+
+- No total supply limit.
+- An initial supply of 0.
+- Requiring users to mint the NFTs themselves.
+
+## Preparation
+
+Before you start with the actual deployment of the NFT Collection, there are a few preparatory steps you need to follow:
+
+1. Install MetaMask [here](https://metamask.io/).
+
+2. Get Some Test FLA [here](https://flafaucet.dev/).
+
+3. Add FLA Testnet [here](/network/rpc.mdx).
+
+4. Get a Pinata Account [Pinata.cloud](https://www.pinata.cloud/).
+
+5. Open [remix](https://remix.ethereum.org/).
+
+6. Download Icecream NFT Sourcefile [here]()
+
+## Step 1: Create a new file
+
+Create a file named `SunFlower.sol` in the contracts directory.
+
+![erc721.sol](/images/erc721_0.png)
+
+## Step 2: Write the ERC-721 Smart Contract
+
+Copy the following code and paste it into your `SunFlower.sol` file:
+
+``` js copy
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+
+contract SunFlowerNFT is ERC721URIStorage, Ownable {
+    constructor() ERC721("SunFlower", "SF") Ownable(msg.sender) {}
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+    uint256 public constant MAX_SUPPLY = 10;
+
+    function createCollectible(string memory tokenURI) public onlyOwner returns (uint256) {
+        require(_tokenIds.current() < MAX_SUPPLY, "All NFTs have been minted");
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current()-1;
+        _mint(msg.sender, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+        return newItemId;
+    }
+}
+```
+![erc721.sol](/images/erc721_1.png)
+
+## Step 3: Compile the Smart Contract
+
+1. Click on the "Solidity Compiler" tab on the left sidebar.
+
+2. Select the appropriate compiler version (0.8.x). Example: 0.8.26+commit.8a97fa7a.
+
+3. Click on "Advanced Configurations" to expand the advanced settings.
+
+4. Choose EVM Version "Paris".
+
+5. Click "Compile SunFlower.sol" button. Ensure there are no compilation errors.
+
+![erc721.sol](/images/erc721_2.png)
+
+## Step 4: Deploy the Smart Contract
+
+1. Navigate to the "Deploy & Run Transactions" tab in Remix.
+
+2. In the "ENVIRONMENT" dropdown, select "Injected Web3" to connect Remix to your MetaMask wallet.
+
+3. Select the SunFlowerNFT contract from the dropdown menu.
+
+4. Click "Deploy" and confirm the transaction in your MetaMask wallet.
+
+![erc721.sol](/images/erc721_3.png)
+
+## Step 5: Wait for Deployment
+
+After confirmation, you will see the deployed contract address in the Remix console.
+
+![erc721.sol](/images/erc721_4.png)
+
+> The demo SunFlower NFT Contract: [0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB](https://testnet.flascan.net/address/0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB)
+
+## Step 6: Store NFT Metadata with Pinata.cloud
+
+### 1. Sign Up and Log In to Pinata.cloud
+
+Go to [Pinata.cloud](https://www.pinata.cloud/) and sign up for an account if you don't have one.
+
+### 2. Upload Image to Pinata.cloud
+
+<Callout type="info" emoji="ℹ️">
+    Download "SunFlower" NFT images source file [here](https://github.com/Flamma-network/docs/raw/main/public/zip/SunFlower_nft.7z).
+</Callout>
+
+1. Click on "Upload" in the Pinata dashboard and select "Folder".
+
+![erc721.sol](/images/erc721_8.png)
+
+2. Upload the "SunFlower" NFT Source file.
+
+3. After uploading, Pinata will provide an IPFS CID (Content Identifier) for the image file.
+
+![erc721.sol](/images/erc721_6.png)
+
+<Callout emoji="👾">
+  **Note this CID URL** `https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/0.jpg`, as it will be used when minting the NFT.
+</Callout>
+
+### 3. Create Metadata JSON File
+
+1. Create a JSON file with the following structure.
+
+``` js copy
+{
+  "name": "SunFlower NFT #0",
+  "description": "This is an NFT from the SunFlower collection.",
+  "image": "<CID_of_your_image>"
+}
+```
+
+2. Replace `<CID_of_your_image>`.
+
+``` js copy
+{
+  "name": "SunFlower NFT #0",
+  "description": "This is an NFT from the SunFlower collection.",
+  "image": "https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/0.jpg"
+}
+```
+
+3. Upload Metadata JSON to Pinata.cloud
+
+![erc721.sol](/images/erc721_7.png)
+
+## Step 7: Mint an NFT with Metadata
+
+1. Call the "createCollectible" function, 
+
+2. Enter the TokenURI of the metadata stored on Pinata (e.g., you want to mint SunFlower #0: `https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/0.jpg`).
+
+3. Click "Transact" and confirm the transaction in your MetaMask wallet.
+
+![erc721.sol](/images/erc721_9.png)
+
+3. Check "[SunFlower #0](https://testnet.flascan.net/token/0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB/instance/0?tab=token_transfers)" on the flascan explorer
+
+![erc721.sol](/images/erc721_10.png)
+
+## Demo Resources
+
+- SunFlower Smart Contract: 0x9FC12F47Bf48ECF3C16b90551be372a7F31764cB
+
+- SunFlower NFT images: https://github.com/Flamma-network/docs/raw/main/public/zip/SunFlower_nft.7z
+ 
+- SunFlower NFT metadata: https://github.com/Flamma-network/docs/raw/main/public/zip/SunFlower_metadata.7z
+
+- Pinta URL
+
+    1. NFT images: https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/Qmd5FQy715aysGYrUnzQSF8MGfMjoGBe1gLJpgypmMaobD/
+
+    2. Metadata: https://coffee-imaginative-jellyfish-118.mypinata.cloud/ipfs/QmPBP9pZPvQungk7B1pArUkQ4M37VFkxzjxPDTHUG7X1UX/
+
+<Cards>
+  <Card
+    icon={<StarsIcon />}
+    title="How to verify smart contract"
+    href="/QuickDappDeploy/verify/verify721"
+    arrow
+  />
+</Cards>
+
+
+
+
+
+
+
+
+
