@@ -36,7 +36,7 @@ The Flamma Network fully supports all standard Ethereum Virtual Machine (EVM) de
 | [OpenZeppelin](https://www.openzeppelin.com/) | A library of modular, reusable smart contracts for Ethereum, focused on security.  |
 | [Hardhat](https://hardhat.org/) | A flexible and extensible development environment for Ethereum that simplifies smart contract development and testing.  |
 | [Web3.js](https://web3js.readthedocs.io/en/v1.10.0/) | A JavaScript library that enables developers to interact with the Ethereum blockchain. It can be used for deploying smart contracts, sending transactions, and more.  |
-| [Ethers.js]([Ethers.js](https://docs.ethers.org/v5/) | A library for interacting with the Ethereum blockchain and its ecosystem. It is designed to be a complete and compact library for managing Ethereum wallets and smart contracts.  |
+| [Ethers.js](https://docs.ethers.org/v5/) | A library for interacting with the Ethereum blockchain and its ecosystem. It is designed to be a complete and compact library for managing Ethereum wallets and smart contracts.  |
 
 ## Learn More Flamma
 
