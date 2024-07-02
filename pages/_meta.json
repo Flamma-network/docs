@@ -29,7 +29,7 @@
     "title": "Concepts"
   },
   "token": "FLA Token",
-  "mainnetplan": "Mainnet Plan",
+  "mainnetplan": "Roadmap",
   "metatransactions": "Metatransactions",
 
   "press-kit": {
@@ -46,6 +46,10 @@
   },
   "privacy": {
     "title": "Privacy",
+    "display": "hidden"
+  },
+  "terms": {
+    "title": "Terms of Service",
     "display": "hidden"
   }
 }
