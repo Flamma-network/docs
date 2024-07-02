@@ -1,5 +1,13 @@
+import { useRouter } from 'next/router';
 import '../style.css'
 
 export default function App({ Component, pageProps }) {
-  return   <Component {...pageProps} />;
+  const router = useRouter();
+  const hideSidebarPaths = ['/privacy', '/terms'];
+
+  return (
+    <div className={hideSidebarPaths.includes(router.pathname) ? '' : ''}>
+      <Component {...pageProps} />
+    </div>
+  );
 }

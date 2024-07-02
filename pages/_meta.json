@@ -43,5 +43,9 @@
     "type": "page",
     "href": "https://flamma.network",
     "newWindow": true
+  },
+  "privacy": {
+    "title": "Privacy",
+    "display": "hidden"
   }
 }
