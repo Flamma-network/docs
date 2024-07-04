@@ -20,8 +20,8 @@ Flamma is a sequence-based blockchain designed for large-scale commercial applic
 | [Verify ERC-20 Smart Contract](https://docs.flamma.network/QuickDappDeploy/verify/verify20) | How to verify the "LaughCoin" ERC-20 Smart Contract on flascan.  |
 | [Verify ERC-721 Smart Contract](https://docs.flamma.network/QuickDappDeploy/verify/verify721) | How to verify the "SunFlower" NFT Smart Contract on flascan.  |
 | [Verify ERC-1155 Smart Contract](https://docs.flamma.network/QuickDappDeploy/verify/verify1155) | How to verify the "Icecream" NFT Smart Contract on flascan.  |
-| [Integrate a Wallet in Your Front-End Application]() | Integrating a cryptocurrency wallet into your front-end application allows users to interact directly with the Flamma network from your website.  |
-| [ERC20 Token Claim Front-End Template]() | This front-end template allows users to claim their ERC20 tokens seamlessly. Built with modern web technologies, the template provides an intuitive and secure interface for interacting with smart contracts.  |
+| [Integrate a Wallet in Your Front-End Application](https://docs.flamma.network/QuickDappDeploy/integratedwalletconnect) | How to use a template to set up a front-end application to integrate WalletConnect using React in 5 minutes.  |
+| [ERC20 Token Claim Front-End Template](https://docs.flamma.network/QuickDappDeploy/minterc20) | How to use a template to set up a front-end application to mint ERC20 tokens using React and WalletConnect in 10 minutes. |
 
 ## Development Tools and EVM Compatibility
 
