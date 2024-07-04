@@ -1,0 +1,251 @@
+import { Callout } from 'nextra/components'
+import { StarsIcon ,Flower2Icon ,CoinsIcon } from '/components/icons/index'
+import { Card, Cards } from 'nextra/components';
+
+# ERC20 Token Claim Front-End Template Tutorial
+
+In this quick 10-minute tutorial, you'll learn how to set up a front-end application to mint ERC20 tokens using React and WalletConnect. By following these steps, you will have a working application where users can connect their wallets, input an amount, and mint tokens.
+
+View the demo results:
+
+The frontend should allow users to input any amount and free mint `PEPE` Coins upon clicking the "mint" button.
+
+![minterc20](/images/minterc20_0.png)
+
+Continuing from the previous tutorial on [how to integrate a wallet in your front-end application using React and WalletConnect](/QuickDappDeploy/integratedwalletconnect.mdx), we will now set up an ERC20 Token Claim front-end application. This tutorial uses the following directory structure based on the provided GitHub repository:
+
+- Network configuration: `src/lib/wallet/networks.ts`
+- Mint page: `src/pages/ui/Mint.tsx`
+
+We'll guide you through the steps to clone the repository, configure the project, and run it.
+
+## Prerequisites
+
+Before you start, ensure you have the following:
+
+- Node.js and Yarn or npm installed
+- Basic knowledge of React
+- A GitHub account to clone the repository
+- Basic understanding of ERC20 tokens
+- Flamma Networks RPC URLs (view [here](/network/rpc.mdx))
+
+## Step 1: Clone the Repository
+
+Clone the specific branch of the repository to your local machine.
+
+``` js copy
+git clone -b free-mint-ERC20-token https://github.com/Flamma-Labs/web3-frontend-expmale.git
+```
+
+## Step 2: Install Dependencies
+
+You can use either yarn or npm to install the required dependencies.
+
+**Using yarn:**
+
+``` js copy
+yarn
+```
+
+**Using npm:**
+
+``` js copy
+npm i
+```
+
+## Step 3: Obtain WalletConnect Project ID
+
+1. Visit [WalletConnect Cloud](https://cloud.walletconnect.com/sign-in).
+2. Create a new project to get your `Project ID`.
+
+![walletconnect](/images/walletconnect_0.png)
+
+## Step 4: Modify Configuration
+
+### 4-1. Flamma Network Configuration
+
+Open `src/lib/wallet/networks.ts` and configure your custom network. Ensure your network settings are correct and correspond to the blockchain you are working with.
+
+``` js copy
+import { defineChain } from 'viem';
+
+export const Flamma_Testnet = defineChain({
+  id: 6550,
+  name: 'Flamma Testnet',
+  nativeCurrency: {
+    name: 'Flamma',
+    symbol: 'FLA',
+    decimals: 18
+  },
+  rpcUrls: {
+    default: { http: ['https://testnetrpc.flamma.network'] }
+  },
+  blockExplorers: {
+    default: {
+      name: 'Flamma Testnet Scan',
+      url: 'https://testnet.flascan.net/',
+      apiUrl: 'https://testnet.flascan.net/api'
+    }
+  }
+});
+
+export const Flamma_Mainnet = defineChain({
+  id: 55614,
+  name: 'Flamma',
+  nativeCurrency: {
+    name: 'Flamma',
+    symbol: 'FLA',
+    decimals: 18
+  },
+  rpcUrls: {
+    default: { http: ['https://rpc.flamma.network'] }
+  },
+  blockExplorers: {
+    default: {
+      name: 'Flamma Mainnet Scan',
+      url: 'https://flascan.net/',
+      apiUrl: 'https://flascan.net/api'
+    }
+  }
+});
+
+```
+
+### 4-2. Environment Variables
+
+Once you have the **WalletConnect Project ID**, update the `.env.development` file with the following:
+
+In the `.env.development` file, replace "Your project id." with your actual project ID:
+
+``` js copy
+VITE_APP_PROJECT_ID = "Your project id."
+```
+
+![walletconnect](/images/walletconnect_1.png)
+
+## Step 5: Mint Page
+
+The mint page is located in `src/pages/ui/Mint.tsx`. This is where you will handle the ERC20 token minting logic.
+
+``` js copy
+import {
+  Box,
+  Button,
+  Heading,
+  Img,
+  NumberInput,
+  useToast,
+  NumberInputField
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { waitForTransactionReceipt, writeContract } from 'wagmi/actions';
+import { wagmiConfig } from '../../lib/wallet/wallet';
+import { useAccount } from 'wagmi';
+import ABI_ERC20 from '../../abi/erc20.json';
+import { ethers } from 'ethers';
+
+const Mint = () => {
+  const [amount, setAmount] = useState('0');
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
+  const { address } = useAccount();
+
+  const onMint = async () => {
+    try {
+      setIsLoading(true);
+      const hash = await writeContract(wagmiConfig, {
+        //Replace your erc20 smart contract (enable function mintable)
+        address: '0x964e3683d742968B264a7df27fA1f3aa8b808F28',
+        abi: ABI_ERC20,
+        functionName: 'mint',
+        args: [address, ethers.parseEther(amount)]
+      });
+      await waitForTransactionReceipt(wagmiConfig, {
+        hash
+      });
+      toast({
+        description: 'Mint Successfully.',
+        status: 'success'
+      });
+    } catch (error: unknown) {
+      toast({
+        description: String(error),
+        status: 'error'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return (
+    <Box textAlign='center'>
+      <Heading fontSize='xl'>Hi this is a demo, how to mint custom erc-20 token.</Heading>
+      <Heading mt='5' fontSize='2xl'>
+        PEPE
+      </Heading>
+      <Img
+        mx='auto'
+        mt='2'
+        src='https://cryptologos.cc/logos/pepe-pepe-logo.png?v=032'
+        boxSize='200px'
+        objectFit='cover'
+      />
+      <NumberInput onChange={(val) => setAmount(val)} mt='5'>
+        <NumberInputField placeholder='0' />
+      </NumberInput>
+      <Button isDisabled={Number(amount) < 1} isLoading={isLoading} mt='4' onClick={onMint}>
+        Mint
+      </Button>
+    </Box>
+  );
+};
+
+export default Mint;
+
+```
+
+## Step 6: Home Component
+
+Set up the Home component to manage the wallet connection and conditionally render the Mint page.
+
+``` js copy
+import { useWeb3Modal } from '@web3modal/wagmi/react';
+import { Button, Center } from '@chakra-ui/react';
+import Mint from './ui/Mint';
+import { useAccount } from 'wagmi';
+
+const Home = () => {
+  const { open } = useWeb3Modal();
+  const { isConnected } = useAccount();
+  return (
+    <Center h='100vh'>
+      {isConnected ? <Mint /> : <Button onClick={() => open()}>Connect</Button>}
+    </Center>
+  );
+};
+
+export default Home;
+
+```
+
+## Step 7: Run the Project
+
+Start the development server with `Yarn` or `npm` to see the final result.
+
+``` js copy
+yarn dev
+```
+
+or
+
+``` js copy
+npm i run dev
+```
+## View Your Final Result
+
+Open your browser and navigate to http://localhost:3000 to see the application in action. You should be able to connect your wallet using WalletConnect or MetaMask, input the desired amount of tokens, and click "Mint" to claim your free tokens.
+
+![minterc20](/images/minterc20_1.png)
+
+
+
+
