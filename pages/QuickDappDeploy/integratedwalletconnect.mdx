@@ -1,0 +1,86 @@
+import { Callout } from 'nextra/components'
+import { StarsIcon ,Flower2Icon ,CoinsIcon } from '/components/icons/index'
+import { Card, Cards } from 'nextra/components';
+
+# Integrate a Wallet in Your Front-End Application Using React and WalletConnect
+
+Integrating WalletConnect into your front-end application allows users to connect their cryptocurrency wallets seamlessly. This tutorial will guide you through the steps to integrate WalletConnect using React.
+
+We have created a front-end template that you can clone from a GitHub repository. By modifying a few configurations and running the project, you will be able to see the final result.
+
+## Preparation
+
+Before you start, ensure you have the following:
+
+- Node.js and Yarn installed
+- Basic knowledge of React
+- A React application set up (You can use Create React App for a quick start)
+
+## Step 1: Clone the Repository
+
+Clone the template repository to your local machine.
+
+``` js copy
+git clone -b wallet-integration https://github.com/Flamma-Labs/web3-frontend-expmale.git
+```
+
+## Step 2: Install Dependencies
+
+You can use either yarn or npm to install the required dependencies.
+
+**Using yarn:**
+
+``` js copy
+yarn
+```
+
+**Using npm:**
+
+``` js copy
+npm i
+```
+
+## Step 3: Obtain WalletConnect Project ID
+
+1. Visit [WalletConnect Cloud](https://cloud.walletconnect.com/sign-in).
+2. Create a new project to get your `Project ID`.
+
+![walletconnect](/images/walletconnect_0.png)
+
+## Step 4: Modify Configuration
+
+Once you have the Project ID, update the `.env.development` file with the following:
+
+In the `.env.development` file, replace "Your project id." with your actual project ID:
+
+``` js copy
+VITE_APP_PROJECT_ID = "Your project id."
+```
+
+
+![walletconnect](/images/walletconnect_1.png)
+
+## Step 5: Run the Project
+
+Start the development server with `Yarn` or `npm` to see the final result.
+
+``` js copy
+yarn dev
+```
+
+or
+
+``` js copy
+npm i run dev
+```
+## View Your Final Result
+
+Open your browser and navigate to http://localhost:3000 to see the application in action. You should be able to connect your wallet using WalletConnect or MetaMask and interact with the application as intended.
+
+![walletconnect](/images/walletconnect_2.png)
+
+By following these steps, you will have a working front-end application integrated with WalletConnect and other necessary components.
+
+
+
+
