@@ -1,0 +1,70 @@
+import { Callout } from 'nextra/components'
+import { StarsIcon ,Flower2Icon ,CoinsIcon } from '/components/icons/index'
+import { Card, Cards } from 'nextra/components';
+
+# How to implement a no-code deployment of an ERC20 token using Remix and OpenZeppelin
+
+When users open MetaMask, they initially see a selection of major tokens. To display additional custom ERC-20 tokens, users must either enable token autodetection or add the tokens manually. Similarly, for NFTs, users need to enable NFT autodetection or manually add them.
+
+This tutorial can enhance the user experience by making it easier to manage and view tokens directly within MetaMask. Follow these steps to add your custom ERC-20 tokens to MetaMask using the wallet_watchAsset RPC method.
+
+## Display ERC-20 Tokens
+
+Use the wallet_watchAsset RPC Method for Seamless Integration
+
+To provide a more user-friendly approach, integrate the [wallet_watchAsset](https://docs.metamask.io/wallet/reference/wallet_watchasset) method in your DApp. This method allows users to easily add tokens without manually entering contract details.
+
+### JavaScript Integration
+
+Add the following function to your DApp's code:
+
+``` js copy
+async function addTokenToMetaMask() {
+    const tokenAddress = '0xYourTokenContractAddress';
+    const tokenSymbol = 'SYM';
+    const tokenDecimals = 18;
+    const tokenImage = 'https://path.to/your/token-image.png';
+
+    try {
+        const wasAdded = await ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+                type: 'ERC20',
+                options: {
+                    // The address of the token.
+                    address: tokenAddress,
+                    // A ticker symbol or shorthand, up to 5 characters.
+                    symbol: tokenSymbol,
+                    // The number of decimals in the token.
+                    decimals: tokenDecimals,
+                    // A string URL of the token logo.
+                    image: tokenImage,
+                },
+            },
+        });
+
+        if (wasAdded) {
+            console.log('Token added');
+        } else {
+            console.log('Token not added');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+### Prompt Users
+
+Call this function at appropriate times, such as after a token purchase or during onboarding, to prompt users to add the token to their MetaMask wallet.
+
+
+## Confirm Addition in MetaMask
+
+When the wallet_watchAsset function is called, MetaMask will prompt the user to add the specified custom token. The user needs to confirm this action in the MetaMask interface.
+
+
+
+
+
+

@@ -4,6 +4,7 @@
     "erc20": "Create an ERC-20 Token",
     "erc721": "Deploying an ERC-721 NFT Collection",
     "erc1155": "Deploying an ERC-1155 NFT Collection",
+    "displaytokens": "Display Tokens",
     "verify": "How to Verify Smart Contract",
     "integratedwalletconnect": "Integrate a Wallet",
      "minterc20": "Mint ERC20 Tokens for free"
